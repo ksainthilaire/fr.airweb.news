@@ -50,7 +50,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.0")
 
     // converter-gson
-    implementation("com.squareup.retrofit2:converter-gson:latest.version")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
