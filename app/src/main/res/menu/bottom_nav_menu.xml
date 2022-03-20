@@ -4,10 +4,10 @@
     <item
         android:id="@+id/home"
         android:title="@string/bottom_nav_home"
-        android:icon="@mipmap/ic_newspaper" />
+        android:icon="@mipmap/ic_newspaper_foreground" />
 
     <item
         android:id="@+id/settings"
         android:title="@string/bottom_nav_settings"
-        android:icon="@mipmap/ic_settings" />
+        android:icon="@mipmap/ic_settings_foreground" />
 </menu>
