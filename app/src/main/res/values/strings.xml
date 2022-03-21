@@ -12,16 +12,29 @@
 
     <string name="search_result">%d résultats</string>
 
+    <string name="empty"></string>
+
     <!-- Strings retrieve in NewsDetailsViewModel -->
+
+    <string name="contact_address_field">Addresse</string>
+    <string name="contact_phone_field">Téléphone</string>
+    <string name="contact_email_field">Adresse e-mail</string>
+
+    <string name="contact_title">À propos</string>
     <string name="contact_company_name">Airweb - Facilitateur de mobilité</string>
-    <string name="contact_address">: 1 Rue Royale, Bureaux de Colline, 92210 Saint Cloud (lancer le
-GoogleMap et faire l\'itération en cliquant sur l\’adresse)</string>
+    <string name="contact_address">1 Rue Royale, Bureaux de Colline, 92210 Saint Cloud</string>
     <string name="contact_email">contact@airweb.fr</string>
     <string name="contact_phone_number">+33 1 76 61 65 10</string>
 
+    <string name="sort_by_title">Trier par titre</string>
+    <string name="sort_by_date">Trier par date</string>
+    <string name="sort_asc">Par ordre croissant</string>
+    <string name="sort_desc">Par ordre décroissant</string>
+
+
 
     <string name="bottom_nav_home">À la une</string>
-    <string name="bottom_nav_settings">Configuration</string>
+    <string name="bottom_nav_settings">À propos</string>
 
     <!-- TODO: Remove or change     this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

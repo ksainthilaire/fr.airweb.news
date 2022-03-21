@@ -9,23 +9,19 @@
         android:name="fr.airweb.news.presentation.fragment.NewsListFragment"
         android:label="NewsListFragment" >
         <action
+            android:id="@+id/action_newsListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
             android:id="@+id/action_newsListFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
         <action
-            android:id="@+id/action_newsListFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_newsListFragment_to_articleFragment2"
+            app:destination="@id/articleFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
         android:name="fr.airweb.news.presentation.fragment.ArticleFragment"
-        android:label="ArticleFragment" >
-        <action
-            android:id="@+id/action_articleFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_articleFragment_to_newsListFragment"
-            app:destination="@id/newsListFragment" />
-    </fragment>
+        android:label="ArticleFragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="fr.airweb.news.presentation.fragment.SettingsFragment"
@@ -33,8 +29,5 @@
         <action
             android:id="@+id/action_settingsFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>
