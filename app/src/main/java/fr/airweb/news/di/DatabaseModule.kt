@@ -4,6 +4,7 @@ import android.content.res.Resources
 import androidx.room.Room
 import fr.airweb.news.data.local.AppDatabase
 import fr.airweb.news.data.local.NewsDao
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -15,7 +16,7 @@ val databaseModule = module {
 
     single {
         Room.databaseBuilder(
-            androidContext(),
+            androidApplication(),
             AppDatabase::class.java, "database-airweb"
         ).build()
     }

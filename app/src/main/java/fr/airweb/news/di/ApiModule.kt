@@ -2,9 +2,12 @@ package fr.airweb.news.di
 
 import android.content.res.Resources
 import fr.airweb.news.R
+import fr.airweb.news.data.services.NewsApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
@@ -24,6 +27,8 @@ val apiModule = module {
     }
 
 
+
+
     single<Retrofit> {
         val httpClient = get<OkHttpClient>()
         val resources = get<Resources>()
@@ -32,6 +37,12 @@ val apiModule = module {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+    }
+
+    single<NewsApi> {
+        get<Retrofit>().create(NewsApi::class.java)
     }
 }

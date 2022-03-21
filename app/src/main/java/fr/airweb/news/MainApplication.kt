@@ -1,6 +1,7 @@
 package fr.airweb.news
 
 import android.app.Application
+import fr.airweb.news.di.apiModule
 import fr.airweb.news.di.databaseModule
 import fr.airweb.news.di.presentationModule
 import fr.airweb.news.di.repositoryModule
@@ -17,6 +18,7 @@ class MainApplication : Application() {
             androidContext(this@MainApplication)
             androidLogger()
 
+            modules(apiModule)
             modules(repositoryModule)
             modules(presentationModule)
             modules(databaseModule)
