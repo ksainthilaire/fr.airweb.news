@@ -20,29 +20,34 @@ class NewsRepository : INewsRepository {
     private val newsDao: NewsDao by inject(NewsDao::class.java)
     private val newsApi: NewsApi by inject(NewsApi::class.java)
 
+    companion object {
+        private const val TAG = "NewsRepository"
+    }
+
     fun getNewsDetailsFromId(id: Int): Observable<NewsDetails> =
         Observable.create { emitter ->
             fetchByIdFromLocal(id)
                 .map(NewsMapper::newsEntityToNewsDetails)
-                .onErrorReturnItem(null)
-                .subscribe(emitter::onNext)
+                .subscribe({ news -> emitter.onNext(news) }, { tr ->
+                    Log.e(TAG, "Error while retrieving an article from the local database", tr)
+                })
         }
 
-    fun getNewsPreviews(): Flowable<List<NewsPreview>?> = Flowable.create( { emitter ->
+    fun getNewsPreviews(): Flowable<List<NewsPreview>?> = Flowable.create({ emitter ->
         val cachedData = fetchAllFromLocal()
             .map { news -> news.map(NewsMapper::newsEntityToNewsPreview) }
-            .subscribe(emitter::onNext)
+            .subscribe({ news -> emitter.onNext(news) },
+                { tr -> Log.e(TAG, "Error while retrieving data locally", tr) })
 
         fetchAllFromRemote()
-            .subscribe { result ->
-                Log.d("TAG", "J'ai reçu les données")
+            .subscribe({ result ->
                 cachedData.dispose()
                 result.news?.let { saveRemoteData(result.news) }
                 fetchAllFromLocal()
                     .map { news -> news.map(NewsMapper::newsEntityToNewsPreview) }
                     .onErrorReturnItem(listOf())
                     .subscribe(emitter::onNext)
-            }
+            }, { tr -> Log.e(TAG, "Error while retrieving data remotely", tr) })
     }, BackpressureStrategy.BUFFER)
 
     private fun fetchByIdFromLocal(id: Int): Observable<NewsEntity> = newsDao.getNewsById(id)
