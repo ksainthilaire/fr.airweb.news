@@ -12,10 +12,10 @@ object NewsMapper {
         "actualité" -> TypeNews.ACTUALITY
         "news" -> TypeNews.NEWS
         "hot" -> TypeNews.HOT
-        else ->  TypeNews.UNDEFINED
+        else -> TypeNews.UNDEFINED
     }
 
-    fun newsEntityToNewsDetails(news: NewsEntity)  : NewsDetails = NewsDetails(
+    fun newsEntityToNewsDetails(news: NewsEntity): NewsDetails = NewsDetails(
         nid = news.nid,
         type = mapNewsType(news.type),
         date = LocalDate.parse(news.date),
@@ -26,7 +26,7 @@ object NewsMapper {
     )
 
 
-    fun newsEntityToNewsPreview(news: NewsEntity)  : NewsPreview = NewsPreview (
+    fun newsEntityToNewsPreview(news: NewsEntity): NewsPreview = NewsPreview(
         nid = news.nid,
         type = mapNewsType(news.type),
         date = LocalDate.parse(news.date),
