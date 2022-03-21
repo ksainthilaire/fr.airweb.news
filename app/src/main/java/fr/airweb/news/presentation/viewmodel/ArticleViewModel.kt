@@ -15,12 +15,9 @@ class ArticleViewModel : BaseViewModel<ArticleState>(
     fun loadArticleById(newsId: Int) {
         repository.getNewsDetailsFromId(newsId)
             .subscribeOn(AndroidSchedulers.mainThread())
-            .map { article ->
-                ArticleState(
-                    isLoading = false,
-                    article = article
-                )
+            .subscribe { news ->
+                val state = ArticleState(isLoading = false, article = news)
+                _state.onNext(state)
             }
-            .subscribe(_state::onNext)
     }
 }
