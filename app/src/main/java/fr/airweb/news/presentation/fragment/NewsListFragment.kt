@@ -43,7 +43,9 @@ class NewsListFragment :
     private fun filterNewsList(state: NewsListState): List<NewsPreview> {
 
         var newsList = if (state.searchedTitle == null) state.newsList!! else
-            state.newsList!!.filter { newsPreview -> newsPreview.title?.compareTo(state.searchedTitle) == 0 }
+            state.newsList!!
+                .filter { newsPreview ->
+                    newsPreview.title.toString().lowercase().trim().contains(state.searchedTitle) }
 
 
         newsList = when (state.sortBy) {
@@ -107,11 +109,11 @@ class NewsListFragment :
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(text: String): Boolean {
+                viewModel.searchArticleByTitle(text.lowercase().trim())
                 return false
             }
 
             override fun onQueryTextSubmit(text: String): Boolean {
-                viewModel.searchArticleByTitle(text)
                 return false
             }
 
